@@ -1,5 +1,5 @@
 import java.util.Iterator;
-class  Stack<Item> implements Iterable<Item>{
+public class  Stack<Item> implements Iterable<Item>{
 	private Node first = null;
 	private class Node{
 		Item data;
