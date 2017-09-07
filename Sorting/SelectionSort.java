@@ -3,6 +3,7 @@ Number of Comparisons: ( n*(n-1) )/2  -> O(n^2)
 Number of Exchanges:    n             -> O(n) Data Movement is minimal  
 Time Complexity:		O(n^2) insensitive to input
 Space Complexity:       O(1)   
+Why Comparable? :		Goal is to sort any type of Data eg String, Integer, Double, File
 */
 class SelectionSort{
 	public static void sort(Comparable[] a){
