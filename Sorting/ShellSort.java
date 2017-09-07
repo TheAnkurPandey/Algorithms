@@ -14,11 +14,10 @@ public class ShellSort{
 
         while (h >= 1) {
             // h-sort the array
-            for (int i = h; i < n; i++) {
-                for (int j = i; j >= h && less(a[j], a[j-h]); j -= h) {
+            for (int i = h; i < n; i++)
+                for (int j = i; j >= h && less(a[j], a[j-h]); j -= h)
                     exch(a, j, j-h);
-                }
-            }
+            
             h /= 3;
         }
     }
@@ -34,9 +33,8 @@ public class ShellSort{
     }
     
     private static void show(Comparable[] a) {
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length; i++)
             System.out.println(a[i]);
-        }
     }	
     public static void main(String[] args){
 		Integer a[] = {11,7,4,2,8};
