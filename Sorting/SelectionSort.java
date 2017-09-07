@@ -1,3 +1,9 @@
+/*
+Number of Comparisons: ( n*(n-1) )/2  -> O(n^2)
+Number of Exchanges:    n             -> O(n) Data Movement is minimal  
+Time Complexity:		O(n^2) insensitive to input
+Space Complexity:       O(1)   
+*/
 class SelectionSort{
 	public static void sort(Comparable[] a){
 		int n = a.length;
