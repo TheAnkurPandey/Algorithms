@@ -1,6 +1,6 @@
 /*
 Increment sequence Used: Knuth 3*X+1 increment sequence
-Time Complexity:		 O( n^(3/2) )  If above increment sequence is used
+Time Complexity:	 O( n^(3/2) )  If above increment sequence is used
 Space Complexity:        O(1) 		
 Space Complexity:
 Equivalent to:           Insertion sort with stride length h
