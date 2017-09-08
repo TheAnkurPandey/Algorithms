@@ -19,16 +19,16 @@ public class OptimisedMergeSort{
 
 	private static void sort(Comparable[] a,Comparable[] aux, int lo, int hi){
 		if (hi <= lo + CUTOFF) { 
-            insertionSort(aux, lo, hi);
-            return;
-        }
+            		insertionSort(aux, lo, hi);
+            		return;
+        	}
 		int mid = lo + (hi-lo)/2;
 		sort(aux, a, lo, mid);
 		sort(aux, a, mid+1, hi);
 		if (less(a[mid], a[mid+1])) {
-            for (int i = lo; i <= hi; i++) aux[i] = a[i];
-            return;
-        }
+            		for (int i = lo; i <= hi; i++) aux[i] = a[i];
+            		return;
+        	}
 		merge(a, aux, lo, mid, hi);
 	}
 
@@ -38,20 +38,20 @@ public class OptimisedMergeSort{
 	}
 	
 	 private static void insertionSort(Comparable[] a, int lo, int hi) {
-        for (int i = lo; i <= hi; i++)
-            for (int j = i; j > lo && less(a[j], a[j-1]); j--)
-                swap(a, j, j-1);
-    }
+        	for (int i = lo; i <= hi; i++)
+            		for (int j = i; j > lo && less(a[j], a[j-1]); j--)
+                		swap(a, j, j-1);
+    	}
 	
 	private static boolean less(Comparable v, Comparable w){
 		return v.compareTo(w) < 0;
 	}
 	
 	private static void swap(Comparable[] a, int i, int j) {
-        Comparable temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
+        	Comparable temp = a[i];
+        	a[i] = a[j];
+	        a[j] = temp;
+	}
 	
 	private static void print(Comparable[] a) {
 		for (int i = 0; i < a.length; i++)
