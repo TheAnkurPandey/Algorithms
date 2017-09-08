@@ -8,6 +8,7 @@ Space Complexity:       O(1)
 Why Comparable? :	Goal is to sort any type of Data eg String, Integer, Double, File
 
 For Partially sorted array insertion sorts runs linear time
+Stable sort
 */
 class InsertionSort{
 	public static void sort(Comparable[] a){

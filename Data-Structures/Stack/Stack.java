@@ -43,6 +43,7 @@ public class  Stack<Item> implements Iterable<Item>{
 		 stack.push(1);
 		 System.out.println(stack.pop());
 		 System.out.println(stack.isEmpty());
+		 for(Integer i: stack) System.out.println(i);
 		 */
 	 }
 }

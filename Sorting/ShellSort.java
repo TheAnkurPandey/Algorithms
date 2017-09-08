@@ -4,6 +4,7 @@ Time Complexity:	 O( n^(3/2) )  If above increment sequence is used
 Space Complexity:        O(1) 		
 Equivalent to:           Insertion sort with stride length h
 Why Insertion Sort?      Insertion sort of partial sorted array(generated after h-sorting) is linear in time.               
+Not Stable
 */
 public class ShellSort{
 

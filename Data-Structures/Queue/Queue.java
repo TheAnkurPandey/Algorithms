@@ -49,6 +49,7 @@ public class  Queue<Item> implements Iterable<Item>{
 		 System.out.println(queue.isEmpty());
 		 System.out.println(queue.dequeue());
 	     	 System.out.println(queue.isEmpty());
+		 for(Integer i: queue) System.out.println(i);
 		 */
 	 }
 }
