@@ -3,6 +3,8 @@ Time Complexity:	O(nlogn)
 Space Complexity:	O(n)	
 Stable
 Not In-Place
+Comparisons<= nLogn
+Array acess<= 6nlogn
 */
 public class MergeSort{
 	private static void merge(Comparable[] a, Comparable[] aux, int lo,int mid,int hi){
@@ -24,7 +26,7 @@ public class MergeSort{
 		merge(a, aux, lo, mid, hi);
 	}
 
-	private static void sort(Comparable[] a){
+	public static void sort(Comparable[] a){
 		Comparable[] aux = new Comparable[a.length];
 		sort(a, aux, 0, a.length-1);
 	}

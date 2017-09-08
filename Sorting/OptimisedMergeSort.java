@@ -32,7 +32,7 @@ public class OptimisedMergeSort{
 		merge(a, aux, lo, mid, hi);
 	}
 
-	private static void sort(Comparable[] a){
+	public static void sort(Comparable[] a){
 		Comparable[] aux = a.clone();
 		sort(aux, a, 0, a.length-1);
 	}
