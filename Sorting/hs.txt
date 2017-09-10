@@ -1,0 +1,58 @@
+
+#include<iostream>
+using namespace std;
+
+int a[] = {3,2,1, -1, -2, -3, 0};
+int heap_size,length=7;
+
+void swap(int *m, int *n){
+	int t;
+	t = *m;
+	*m=*n;
+	*n=t;	
+}
+
+void max_heapify(int i){
+	int l=2*i+1, r=2*i+2,largest;
+	
+	if(l<heap_size && a[l]>a[i]){
+		largest=l;
+	}else{
+		largest=i;
+	}
+	
+	if(r<heap_size && a[r]>a[largest]){
+		largest=r;
+	}
+	
+	if(largest!=i){
+		swap(&a[i],&a[largest]);
+		max_heapify(largest);
+	}	
+}
+
+void build_max_heap(){
+	heap_size=length;
+	int i=length/2-1;
+	for(;i>=0;i--){
+		max_heapify(i);
+	}
+}
+
+void hs(){
+	build_max_heap();
+	int i=length-1;
+	while(i>=0){
+		swap(&a[0],&a[i]);
+		heap_size--;
+		max_heapify(0);
+		i--;
+	}
+}
+
+int main(){
+    hs();
+    for(int i=0;i<7;i++)
+    	cout<<a[i]<<"\t";
+    return 0;
+}

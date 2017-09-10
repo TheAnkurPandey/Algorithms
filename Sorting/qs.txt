@@ -1,0 +1,42 @@
+
+#include<iostream>
+using namespace std;
+
+int a[] = {3,2,9};
+
+void swap(int *m, int *n){
+	int t;
+	t = *m;
+	*m=*n;
+	*n=t;	
+}
+
+int partition(int l, int r){
+	int x=a[r],i=l-1,j=l;
+	
+	for(;j<r;j++){
+		if(a[j]<x){
+			i++;
+			swap(&a[i],&a[j]);
+		}
+	}
+	
+	swap(&a[++i],&a[r]);
+	
+	return i;
+}
+
+void qs(int l, int r){
+	if(l<r){
+		int p = partition(l,r);
+		qs(l,p-1);
+		qs(p+1,r);
+	}
+}
+
+int main(){
+    qs(0,2);
+    for(int i=0;i<3;i++)
+    	cout<<a[i];
+    return 0;
+}
