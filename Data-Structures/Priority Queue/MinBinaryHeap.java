@@ -73,11 +73,10 @@ public class MinBinaryHeap<Key extends Comparable<Key>>{
 	}
 
 	public static void main(String[] args)throws IOException{
-		int m;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         	System.out.println("Enter integers");
 	        String data[] = br.readLine().split(" ");
-	        m = Integer.parseInt(data[0]);
+	        int m = Integer.parseInt(data[0]);
 	        MinBinaryHeap<Integer> bh = new MinBinaryHeap<Integer>(m+1);
 	        for(int i=1;i<data.length;i++){
         		bh.insert(Integer.parseInt(data[i]));
