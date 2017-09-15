@@ -9,33 +9,33 @@ public class MaxBinaryHeap<Key extends Comparable<Key>>{
 	private int n;
 	
 	public MaxBinaryHeap(int capacity){
-		pq = (Key[]) new Comparable[capacity];
-		n = -1;
+		pq = (Key[]) new Comparable[capacity+1];
+		n = 0;
 	}
 
 	public boolean isEmpty(){
-		return n == -1;
+		return n == 0;
 	}
 	public void insert(Key x){
 		pq[++n] = x;
 		swim(n);
 	}
 	public Key delMax(){
-		Key max = pq[0];
-		swap(0,n--);
-		sink(0);
+		Key max = pq[1];
+		swap(1,n--);
+		sink(1);
 		pq[n+1] = null;
 		return max;
 	}
 	
 	private void swim(int k){
-		while(k>0 && less(k/2,k)){
+		while(k>1 && less(pq[k/2],pq[k])){
 			swap(k,k/2);
 			k=k/2;
 		}
 	}
 	private void sink(int parent){
-		int l=2*parent+1, r=2*parent+2,largest;
+		int l=2*parent, r=2*parent+1,largest;
 		
 		if(l<n && less(pq[parent],pq[l])){
 			largest=l;
