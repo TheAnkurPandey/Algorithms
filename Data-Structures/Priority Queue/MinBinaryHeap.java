@@ -12,7 +12,6 @@ public class MinBinaryHeap<Key extends Comparable<Key>>{
 	
 	public MinBinaryHeap(int capacity){
 		pq = (Key[]) new Comparable[capacity+1];
-		System.out.println(pq.length);
 		n = 0;
 	}
 
@@ -65,7 +64,7 @@ public class MinBinaryHeap<Key extends Comparable<Key>>{
  	}
     	
 	public void print() {
-		for (int i = 0; i <= n; i++)
+		for (int i = 1; i <= n; i++)
 			System.out.print(pq[i]+"\t");
 		System.out.println();
 	}

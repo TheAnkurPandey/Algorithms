@@ -63,7 +63,7 @@ public class MaxBinaryHeap<Key extends Comparable<Key>>{
  	}
     	
 	public void print() {
-		for (int i = 0; i <= n; i++)
+		for (int i = 1; i <= n; i++)
 			System.out.print(pq[i]+"\t");
 		System.out.println();
 	}
