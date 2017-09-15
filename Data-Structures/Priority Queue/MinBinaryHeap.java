@@ -10,48 +10,48 @@ public class MinBinaryHeap<Key extends Comparable<Key>>{
 	private Key[] pq;
 	private int n;
 	
-	public hi(int capacity){
-		pq = (Key[]) new Comparable[capacity];
-		n = -1;
+	public MinBinaryHeap(int capacity){
+		pq = (Key[]) new Comparable[capacity+1];
+		System.out.println(pq.length);
+		n = 0;
 	}
 
 	public boolean isEmpty(){
-		return n == -1;
+		return n == 0;
 	}
 	public void insert(Key x){
 		pq[++n] = x;
 		swim(n);
 	}
 	public Key delMin(){
-		Key max = pq[0];
-		swap(0,n--);
-		sink(0);
+		Key max = pq[1];
+		swap(1,n--);
+		sink(1);
 		pq[n+1] = null;
 		return max;
 	}
 	
 	private void swim(int k){
-		while(k>0 && greater(pq[k/2],pq[k])){
+		while(k>1 && greater(pq[k/2],pq[k])){
 			swap(k,k/2);
 			k=k/2;
 		}
 	}
 	private void sink(int parent){
-		int l=2*parent+1, r=2*parent+2,largest;
+		int l=2*parent, r=2*parent+1,smallest;
 		
-		if(l<n && greater(pq[parent],pq[l])){
-			largest=l;
+		if(l<=n && greater(pq[parent],pq[l])){
+			smallest=l;
 		}else{
-			largest=parent;
+			smallest=parent;
 		}
 		
-		if(r<n && greater(pq[largest],pq[r])){
-			largest=r;
+		if(r<=n && greater(pq[smallest],pq[r])){
+			smallest=r;
 		}
-		
-		if(largest!=parent){
-			swap(parent,largest);
-			sink(largest);
+		if(smallest!=parent){
+			swap(parent,smallest);
+			sink(smallest);
 		}	
 	}
 	private boolean greater(Comparable left, Comparable right) {
@@ -70,7 +70,7 @@ public class MinBinaryHeap<Key extends Comparable<Key>>{
 		System.out.println();
 	}
 	public int size() {
-		return n+1;
+		return n;
 	}
 
 	public static void main(String[] args)throws IOException{

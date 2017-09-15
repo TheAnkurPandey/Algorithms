@@ -37,13 +37,13 @@ public class MaxBinaryHeap<Key extends Comparable<Key>>{
 	private void sink(int parent){
 		int l=2*parent, r=2*parent+1,largest;
 		
-		if(l<n && less(pq[parent],pq[l])){
+		if(l<=n && less(pq[parent],pq[l])){
 			largest=l;
 		}else{
 			largest=parent;
 		}
 		
-		if(r<n && less(pq[largest],pq[r])){
+		if(r<=n && less(pq[largest],pq[r])){
 			largest=r;
 		}
 		
