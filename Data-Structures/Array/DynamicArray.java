@@ -227,19 +227,6 @@ public class DynamicArray<type extends Comparable <type> >{
 	        da.insert(pos, data);
         	da.print();
         	
-        	System.out.println("Enter index for insertion");
-        	pos = Integer.parseInt( br.readLine());
-	        System.out.println("Enter data");
-        	data = Integer.parseInt( br.readLine());
-	        da.insert(pos, data);
-        	da.print();
-        	System.out.println("Enter index for insertion");
-        	pos = Integer.parseInt( br.readLine());
-	        System.out.println("Enter data");
-        	data = Integer.parseInt( br.readLine());
-	        da.insert(pos, data);
-        	da.print();
-	       
         	//Deletion
 		System.out.println("Enter index for deletion");
 	        pos = Integer.parseInt( br.readLine());
