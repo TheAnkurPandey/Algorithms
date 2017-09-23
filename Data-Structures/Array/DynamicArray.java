@@ -208,9 +208,11 @@ public class DynamicArray<type extends Comparable <type> >{
 	
 	public static void main(String[] args)throws IOException{
 		
-		DynamicArray<Integer> da = new DynamicArray<Integer>(6);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    		     
+		System.out.println("Enter the Capacity");
+		int arrayCapacity = Integer.parseInt( br.readLine());
+		DynamicArray<Integer> da = new DynamicArray<Integer>(arrayCapacity);
+		    		     
         	//Input in array
 	        System.out.println("Enter num of ints");
         	int num = Integer.parseInt( br.readLine());
