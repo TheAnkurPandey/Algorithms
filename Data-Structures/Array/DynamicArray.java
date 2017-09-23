@@ -156,7 +156,7 @@ public class DynamicArray<type extends Comparable <type> >{
 		}
 		for(int i=0; i<end; i++)
 			b[(i+end-remain)%end] = a[i];
-		a=(type[])b;
+		a=b;
 	}
 	public void rightRotate(int d){
 		type b[] = a.clone();
