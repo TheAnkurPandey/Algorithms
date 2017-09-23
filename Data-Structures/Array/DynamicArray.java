@@ -7,16 +7,22 @@ Rotation	O(n)
 Selection	O(n) expected if randomised pivot is used otherwise O(n^2)
 Sorting		O(n*log n)
 */
+
 import java.io.*;
 import java.util.LinkedHashSet;
 
 public class DynamicArray<type extends Comparable <type> >{
-	private static Comparable a[];
-	private static int end;
-	private static int capacity;
+	private  type a[];
+	private  int end=0;
+	private  int capacity=1;
 	
-	public static class Quick{
-		private static int partition(int lo, int hi){
+	public DynamicArray(int n){
+		capacity = n;
+		a = (type[])new Comparable[capacity];
+	}
+	
+	private  class Quick{
+		private int partition(int lo, int hi){
 			int i = lo, j = hi+1;
 			while(true){
 				while(less(a[++i],a[lo])&&(i!=hi));
@@ -24,13 +30,13 @@ public class DynamicArray<type extends Comparable <type> >{
 				while(less(a[lo],a[--j])&&(j!=lo));
 					
 				if(i>=j) break;
-				swap(a, i, j);
+				swap(i, j);
 			} 
-			swap(a, lo, j); 
+			swap(lo, j); 
 			return j;	
 		}
 		
-		private static void sort(int lo, int hi) { 
+		private void sort(int lo, int hi) { 
 	        	if (hi <= lo) return;
 		        int j = partition(lo, hi);
 		        sort( lo, j-1);
@@ -38,12 +44,12 @@ public class DynamicArray<type extends Comparable <type> >{
 		}
 		
 		//Quick-Sort
-		public static void sort() {
+		public void sort() {
 	        	sort(0, end - 1);
 	        }
 
 		//Quick-Select
-		public static Comparable select(int k){
+		public type select(int k){
 			int lo = 0, hi = end-1;
 			while(hi>lo){
 				int j = partition(lo, hi);
@@ -54,41 +60,43 @@ public class DynamicArray<type extends Comparable <type> >{
 			return a[k];
 		}
 
-		private static boolean less(Comparable v, Comparable w) {
+		private  boolean less(type v, type w) {
 	        	return v.compareTo(w) < 0;
 	    	}
 	        
-	    	private static void swap(Comparable[] a, int i, int j) {
-	        	Comparable temp = a[i];
+	    	private  void swap(int i, int j) {
+	        	type temp = a[i];
 		        a[i] = a[j];
 		        a[j] = temp;
 	 	}	
 	}
 	
 	//insert at end
-	public static void pushBack(Comparable data){
+	public  void pushBack(type data){
 		if(end < capacity)
 			a[end++] = data;
 		else{
 			capacity*=1.5;
-			Comparable b[] = new Comparable[capacity];
-			System.arraycopy(b, 0, a, 0, a.length);
+			type b[] = (type[])new Comparable[capacity];
+			for (int i = 0; i < a.length; i++)
+		         b[i]=a[i];
 			a=b;
 		}
 	}
 	
 	//Insertion
-	public static void insert(int pos, Comparable data){
+	public  void insert(int pos, type data){
 		if(end>=a.length){
 			capacity*=1.5;
-			Comparable b[] = new Comparable[capacity];
-			System.arraycopy(b, 0, a, 0, a.length);
+			type b[] = (type[])new Comparable[capacity];
+			for (int i = 0; i < a.length; i++)
+		         b[i]=a[i];
 			a=b;
 		}
-		Comparable prev = a[pos];
+		type prev = a[pos];
         	a[pos] = data;
 	        for(int i =pos ;i<end;i++){
-        		Comparable next = a[i+1];
+        		type next = a[i+1];
         		a[i+1] = prev;
 	        	prev = next;
 	        }
@@ -96,7 +104,7 @@ public class DynamicArray<type extends Comparable <type> >{
 	}
 	
 	//Deletion
-	public static void delete(int pos){
+	public void delete(int pos){
 		if (end==0){
 			System.out.println("UNDERFLOW");
 			return;
@@ -107,40 +115,40 @@ public class DynamicArray<type extends Comparable <type> >{
 	}
 	
 	//Sorting
-	public static void sort(){
-		Quick.sort();
+	public void sort(){
+		new Quick().sort();
 	}
 	
 	//Selection
-	public static Comparable select(int k){
-		return Quick.select(k);
+	public type select(int k){
+		return new Quick().select(k);
 	}
 	
 	//Maximum
-	public static Comparable max(){
+	public type max(){
 		if (a == null || a.length == 0)
             		return null;
-	        Comparable mx = a[0];
-	        for (int i = 1; i < a.length; i++)
+	        type mx = a[0];
+	        for (int i = 1; i < end; i++)
 	            if (mx.compareTo(a[i]) < 0)
         	        mx = a[i];
 	        return mx;
 	}
 	
 	//Minimum
-	public static Comparable min(){
+	public type min(){
 		if (a == null || a.length == 0)
 	            return null;
-	        Comparable mn = a[0];
-        	for (int i = 1; i < a.length; i++)
+	        type mn = a[0];
+        	for (int i = 1; i < end; i++)
 	            if (mn.compareTo(a[i]) > 0)
         	        mn = a[i];
 	        return mn;
 	}
 	
 	//Rotation
-	public static void leftRotate(int d){
-		Comparable b[] = a.clone();
+	public void leftRotate(int d){
+		type b[] = a.clone();
 		int remain=0;
 		if(d>end){
 			int comp = d/end;
@@ -148,18 +156,18 @@ public class DynamicArray<type extends Comparable <type> >{
 		}
 		for(int i=0; i<end; i++)
 			b[(i+end-remain)%end] = a[i];
-		a=b;
+		a=(type[])b;
 	}
-	public static void rightRotate(int d){
-		Comparable b[] = a.clone();
+	public void rightRotate(int d){
+		type b[] = a.clone();
 		for(int i=0; i<end; i++)
 			b[(i+end+d)%end] = a[i];
 		a=b;
 	}
 
 	//Is Unique
-	public static boolean isUnique(){
-		LinkedHashSet<Comparable> hs = new LinkedHashSet<Comparable>();
+	public boolean isUnique(){
+		LinkedHashSet<type> hs = new LinkedHashSet<type>();
 		for(int i=0;i<end;i++){
 			if(hs.contains(a[i]))
 				return false;
@@ -169,75 +177,95 @@ public class DynamicArray<type extends Comparable <type> >{
 		return true;
 	}
 	
+	//Get Capacity
+	public int getCapacity(){
+		return capacity;
+	}
+	//Get size
+	public int getSize(){
+		return end;
+	}
+	
 	//Print
-	public static void print(){
+	public void print(){
 		for(int i=0;i<end;i++)
 	        	System.out.print(a[i]+ " ");
 		System.out.println();
 	}
-	public static void printRev(){
+	public void printRev(){
 		for(int i=end-1;i>=0;i--)
 	        	System.out.print(a[i]+ " ");
 		System.out.println();
 	}
-	public static void printDistinct(){
-		LinkedHashSet<Comparable> hs = new LinkedHashSet<Comparable>();
+	public void printDistinct(){
+		LinkedHashSet<type> hs = new LinkedHashSet<type>();
 		for(int i=0;i<end;i++)
 			hs.add(a[i]);
-		for(Comparable x: hs)
+		for(type x: hs)
 			System.out.print(x+" ");
 		System.out.println();
 	}
 	
 	public static void main(String[] args)throws IOException{
 		
+		DynamicArray<Integer> da = new DynamicArray<Integer>(6);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    		System.out.println("Enter size");
-	        int size =capacity= Integer.parseInt( br.readLine());
-        	a = new Integer[size];
-        
+    		     
         	//Input in array
 	        System.out.println("Enter num of ints");
-        	end = Integer.parseInt( br.readLine());
+        	int num = Integer.parseInt( br.readLine());
 	        System.out.println("Enter ints");
         	String in[]= br.readLine().split(" ");
-	        for(int i=0;i<end;i++)
-        		a[i] = Integer.parseInt(in[i]);
+	        for(int i=0;i<num;i++)
+        		da.pushBack(Integer.parseInt(in[i]));
        
 	        //Insertion
 		System.out.println("Enter index for insertion");
         	int pos = Integer.parseInt( br.readLine());
 	        System.out.println("Enter data");
         	int data = Integer.parseInt( br.readLine());
-	        insert(pos, data);
-        	print();
+	        da.insert(pos, data);
+        	da.print();
+        	
+        	System.out.println("Enter index for insertion");
+        	pos = Integer.parseInt( br.readLine());
+	        System.out.println("Enter data");
+        	data = Integer.parseInt( br.readLine());
+	        da.insert(pos, data);
+        	da.print();
+        	System.out.println("Enter index for insertion");
+        	pos = Integer.parseInt( br.readLine());
+	        System.out.println("Enter data");
+        	data = Integer.parseInt( br.readLine());
+	        da.insert(pos, data);
+        	da.print();
 	       
         	//Deletion
 		System.out.println("Enter index for deletion");
 	        pos = Integer.parseInt( br.readLine());
-        	delete(pos);
-	        print();
+        	da.delete(pos);
+	        da.print();
                 
 		 //Find Min-Max
-	        System.out.println("Minimum "+min());
-	        System.out.println("Maximum "+max());
+	        System.out.println("Minimum "+da.min());
+	        System.out.println("Maximum "+da.max());
               
 	        //Find Median
-	        System.out.println("Median "+select(end/2));
+	        System.out.println("Median "+da.select(da.getSize()/2));
 	        
 	        //sorting
-	        sort();
-	        print();
-	        printRev();
+	        da.sort();
+	        da.print();
+	        da.printRev();
 
 		//Rotation
-	        leftRotate(10);
-	        print();
-	        rightRotate(11);
-	        print();
+	        da.leftRotate(10);
+	        da.print();
+	        da.rightRotate(11);
+	        da.print();
 	     
-	        System.out.println("IsUnique "+isUnique());
+	        System.out.println("IsUnique "+da.isUnique());
 	        System.out.print("Distinct ");
-	        printDistinct();
+	        da.printDistinct();
     	}
 }
