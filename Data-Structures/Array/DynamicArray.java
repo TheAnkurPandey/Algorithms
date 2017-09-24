@@ -15,8 +15,9 @@ get- 		get value at index
 
 import java.io.*;
 import java.util.LinkedHashSet;
+import java.util.Iterator;
 
-public class DynamicArray<type extends Comparable <type> >{
+public class DynamicArray<type extends Comparable <type> > implements Iterable<type>{
 	private  type a[];
 	private  int end=0;
 	private  int capacity=1;
@@ -26,6 +27,21 @@ public class DynamicArray<type extends Comparable <type> >{
 		a = (type[])new Comparable[capacity];
 	}
 	
+	public Iterator<type> iterator(){
+		return new ListIterator();
+	}
+	private class ListIterator implements Iterator<type>{
+		private int current = 0;
+		public boolean hasNext(){
+			return current!=end;
+		}
+		public type next(){
+			type item = a[current];
+			current += 1;
+			return item;
+		}
+	}
+
 	private  class Quick{
 		private int partition(int lo, int hi){
 			int i = lo, j = hi+1;
@@ -279,5 +295,10 @@ public class DynamicArray<type extends Comparable <type> >{
 	        System.out.println("IsUnique "+da.isUnique());
 	        System.out.print("Distinct ");
 	        da.printDistinct();
+
+		//Traversing through array
+		for(int x: da){
+        		System.out.println(x);
+        	}
     	}
 }
