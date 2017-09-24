@@ -6,6 +6,11 @@ Minimum		O(n)
 Rotation	O(n)
 Selection	O(n) expected if randomised pivot is used otherwise O(n^2)
 Sorting		O(n*log n)
+
+add-		insert at any position
+put-		Update the value at index
+del-		Remove the value
+get- 		get value at index
 */
 
 import java.io.*;
@@ -72,7 +77,7 @@ public class DynamicArray<type extends Comparable <type> >{
 	}
 	
 	//insert at end
-	public  void pushBack(type data){
+	public  void add(type data){
 		if(end < capacity)
 			a[end++] = data;
 		else{
@@ -84,8 +89,8 @@ public class DynamicArray<type extends Comparable <type> >{
 		}
 	}
 	
-	//Insertion
-	public  void insert(int pos, type data){
+	//Insertion at any position
+	public  void add(int indx, type data){
 		if(end>=a.length){
 			capacity*=1.5;
 			type b[] = (type[])new Comparable[capacity];
@@ -93,9 +98,9 @@ public class DynamicArray<type extends Comparable <type> >{
 		         b[i]=a[i];
 			a=b;
 		}
-		type prev = a[pos];
-        	a[pos] = data;
-	        for(int i =pos ;i<end;i++){
+		type prev = a[indx];
+        	a[indx] = data;
+	        for(int i =indx ;i<end;i++){
         		type next = a[i+1];
         		a[i+1] = prev;
 	        	prev = next;
@@ -103,8 +108,13 @@ public class DynamicArray<type extends Comparable <type> >{
 	        end++;
 	}
 	
+	//Update
+	public  void put(int indx, type data){
+		a[indx] = data;
+	}
+		
 	//Deletion
-	public void delete(int pos){
+	public void del(int pos){
 		if (end==0){
 			System.out.println("UNDERFLOW");
 			return;
@@ -112,6 +122,15 @@ public class DynamicArray<type extends Comparable <type> >{
 		for(int i =pos ;i<end-1;i++)
         		a[i]= a[i+1];
 	        end--;
+	}
+
+	//Searching
+	public int find(type data){
+		for(int i=0;i<end;i++){
+			if(a[i].equals(data))
+				return i;
+		}
+		return -1;
 	}
 	
 	//Sorting
@@ -185,6 +204,10 @@ public class DynamicArray<type extends Comparable <type> >{
 	public int getSize(){
 		return end;
 	}
+	//Get value
+	public type get(int indx){
+		return a[indx];
+	}
 	
 	//Print
 	public void print(){
@@ -219,20 +242,20 @@ public class DynamicArray<type extends Comparable <type> >{
 	        System.out.println("Enter ints");
         	String in[]= br.readLine().split(" ");
 	        for(int i=0;i<num;i++)
-        		da.pushBack(Integer.parseInt(in[i]));
+        		da.add(Integer.parseInt(in[i]));
        
 	        //Insertion
 		System.out.println("Enter index for insertion");
         	int pos = Integer.parseInt( br.readLine());
 	        System.out.println("Enter data");
         	int data = Integer.parseInt( br.readLine());
-	        da.insert(pos, data);
+	        da.add(pos, data);
         	da.print();
         	
         	//Deletion
 		System.out.println("Enter index for deletion");
 	        pos = Integer.parseInt( br.readLine());
-        	da.delete(pos);
+        	da.del(pos);
 	        da.print();
                 
 		 //Find Min-Max
