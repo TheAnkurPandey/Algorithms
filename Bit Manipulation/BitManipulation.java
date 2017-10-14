@@ -38,11 +38,11 @@ public class BitManipulation{
 	public static void main(String[] args){
 		BitManipulation obj = new BitManipulation();
 		
-		int setA = obj.add(0,0);
+		long setA = obj.add(0,0);
 		setA = obj.add(setA, 4);
 		setA = obj.add(setA, 8);
 		
-		int setB = obj.add(0, 12);
+		long setB = obj.add(0, 12);
 		setB = obj.add(setB, 16);
 		setB = obj.add(setB, 20);
 		setB = obj.add(setB, 8);
