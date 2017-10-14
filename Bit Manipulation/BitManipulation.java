@@ -1,35 +1,35 @@
 public class BitManipulation{
-	public int add(int set, int position){
-		return set|= (1<<position);
+	public long add(long set, int position){
+		return set|=(1L<<position);
 	}
 	
-	public void printItemsOfSet(int set){
-		for(int i=0;i<32;i++){
-	    	if(((set >> i) & 1)!=0)
-	    		System.out.print(i+"\t");
-	    }
-		System.out.println();
-	}
-	
-	public int union(int set1, int set2){
-		return set1|set2;
-	}
-	
-	public int intersection(int set1, int set2){
-		return set1&set2;
-	}
-	
-	public void complements(int set){
-		int n = ~set & ((1<<30)-1);
-		for(int i=0;i<32;i++){
-	    	if ( ((n >> i) & 1)!=0 )
-	    		System.out.print(i+"\t");
+	public void printItemsOfSet(long set){
+		for(int i=0;i<64;i++){
+	    		if(((set >> i) & 1)!=0)
+	    			System.out.print(i+"\t");
 		}
 		System.out.println();
 	}
 	
-	public boolean check(int set, int position){
-		if((set & (1<<position))!=0)
+	public long union(long set1, long set2){
+		return set1|set2;
+	}
+	
+	public long intersection(long set1, long set2){
+		return set1&set2;
+	}
+	
+	public void complements(long set){
+		long n = ~set & ((1L<<63)-1);
+		for(int i=0;i<64;i++){
+	    		if ( ((n >> i) & 1)!=0 )
+	    			System.out.print(i+"\t");
+		}
+		System.out.println();
+	}
+	
+	public boolean check(long set, int position){
+		if((set & (1L<<position))!=0)
 			return true;
 		else
 			return false;
