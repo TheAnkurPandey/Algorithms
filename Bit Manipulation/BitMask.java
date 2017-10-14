@@ -1,4 +1,4 @@
-public class BitManipulation{
+public class BitMask{
 	public long add(long set, int position){
 		return set|=(1L<<position);
 	}
@@ -36,7 +36,7 @@ public class BitManipulation{
 	}
 	
 	public static void main(String[] args){
-		BitManipulation obj = new BitManipulation();
+		BitMask obj = new BitMask();
 		
 		long setA = obj.add(0,0);
 		setA = obj.add(setA, 4);
