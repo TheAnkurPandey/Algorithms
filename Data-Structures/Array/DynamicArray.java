@@ -6,6 +6,7 @@ Minimum		O(n)
 Rotation	O(n)
 Selection	O(n) expected if randomised pivot is used otherwise O(n^2)
 Sorting		O(n*log n)
+Rank		O(log n)
 
 add-		insert at any position
 put-		Update the value at index
@@ -159,6 +160,21 @@ public class DynamicArray<type extends Comparable <type> > implements Iterable<t
 		return new Quick().select(k);
 	}
 	
+	//(Only for sorted array)Rank- number of element less than data
+	 public int rank(type data) {
+	        if (data == null) throw new IllegalArgumentException("argument to rank() is null"); 
+
+	        int lo = 0, hi = end-1; 
+	        while (lo <= hi) { 
+	            	int mid = lo + (hi - lo) / 2; 
+			int cmp = data.compareTo(a[mid]);
+			if      (cmp < 0) hi = mid - 1; 
+	            	else if (cmp > 0) lo = mid + 1; 
+	            	else return mid; 
+	        } 
+	        return lo;
+	 }
+
 	//Maximum
 	public type max(){
 		if (a == null || a.length == 0)
@@ -285,6 +301,9 @@ public class DynamicArray<type extends Comparable <type> > implements Iterable<t
 	        da.sort();
 	        da.print();
 	        da.printRev();
+
+		//Rank
+	        System.out.println("Rank of 3 "+da.rank(3));
 
 		//Rotation
 	        da.leftRotate(10);
