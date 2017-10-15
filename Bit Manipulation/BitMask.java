@@ -1,3 +1,9 @@
+/*
+Bitmask	- is a lightweight set of size<64
+	- represented as 64 bit long integer
+	- ith set bit indicate presence of ith item
+*/
+
 public class BitMask{
 	//Add item in a set
 	public long add(long set, int position){ return set|=(1L<<position); }
