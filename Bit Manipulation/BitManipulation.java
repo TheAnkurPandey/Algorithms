@@ -1,7 +1,7 @@
 // Common Bit manipulation operations
 import java.util.*;
 
-class BitManipulation {
+public class BitManipulation {
 	private static int setBit(int S, int j) { return S | (1 << j); }
 
 	private static int isOn(int S, int j) { return S & (1 << j); }
