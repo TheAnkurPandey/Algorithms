@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class QueueUsingCircularArray<Item> implements Iterable<Item>{
+public class CircularQueue<Item> implements Iterable<Item>{
 	private Item Q[];
 	private int head, tail, capacity;
     
